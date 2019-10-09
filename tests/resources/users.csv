@@ -1,0 +1,6 @@
+account,active,scopes,data
+success@bar.com,t,"{reporting,analytics}","{""a"": {""b"": true, ""c"": {""orders"": [1, 2, 3, 4]}, ""e"": {""status"": ""success""}}}"
+demo@crowdemotion.com,t,"{featureapi,analytics}","{""a"": {""b"": {""c"": [1, 2, 3, 4], ""orders"": [1, 2, 3, 4], ""e"": {""status"": ""failure""}}}}"
+analytics@crowdemotion.com,t,"{analytics}","{""a"": [{""b"": {""c"": {""orders"": [4, 5, 6, 7]}}}, {""e"": ""unknown"", ""status"": ""unknown""}]}"
+results@crowdemotion.com,t,"{reporting,analytics}","{""a"": null, ""b"": {""c"": [6, 5, 4, 3]}, ""orders"": ""success"", ""e"": [{""status"": ""success""}]}"
+admin@crowdemotion.com,t,"{reporting}","{""a"": {""b"": {""c"": false, ""orders"": [0, 0, 0]}}, ""e"": null, ""status"": ""failure""}"
