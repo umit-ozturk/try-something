@@ -1,0 +1,52 @@
+version: '3'
+services:
+  db:
+    image: postgres:10
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER:'elementadmin'
+      - POSTGRES_DB:'elementdb'
+    networks:
+      - my-network
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  flask:
+    restart: always
+    build: .
+    image: flask:1.1.1
+    container_name: flask
+    command: flask run --host=0.0.0.0 --port=4964
+    volumes:
+      - .:/code
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=demo.app:testing
+    ports:
+      - "8000:4964"
+    depends_on:
+      - db
+    networks:
+      my-network:
+        aliases:
+          - flask-app
+
+  nginx:
+    image: nginx:1.13.7
+    container_name: nginx
+    depends_on:
+      - flask
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - my-network
+    ports:
+      - "80:80"
+
+volumes:
+  postgres_data:
+
+
+networks:
+  my-network:

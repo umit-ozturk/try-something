@@ -10,6 +10,7 @@ class Config:
     LOG_LEVEL = "INFO"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+
 class TestingConfig(Config):
     """Testing configuration object."""
 
@@ -17,7 +18,8 @@ class TestingConfig(Config):
     TESTING = True
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     # Default to an in memory DB as we don't need one in most places.
-    SQLALCHEMY_DATABASE_URI = os.environ.get("TEST_DB_URL", ":memory:")
+    SQLALCHEMY_DATABASE_URI = os.environ.get("API_DB_URL")
+    # SQLALCHEMY_DATABASE_URI = os.environ.get("TEST_DB_URL", ":memory:")
 
 
 class ProductionConfig(Config):
